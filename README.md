@@ -8,9 +8,8 @@ Add SHA1 hashing support to Keycloak.
 
 ## Building
 
-1. `mvn install`
-2. `mvn package`
-3. It should generate a JAR archive under `./target/keycloak-sha1.jar`
+- Run `mvn package`
+- It should generate a JAR archive under `./target/keycloak-sha1.jar`
 
 ## Deploying to Keycloak
 
