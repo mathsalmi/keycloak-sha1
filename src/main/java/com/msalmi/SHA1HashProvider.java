@@ -1,11 +1,12 @@
 package com.msalmi;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-
 import org.keycloak.credential.hash.PasswordHashProvider;
 import org.keycloak.models.PasswordPolicy;
 import org.keycloak.models.credential.PasswordCredentialModel;
+
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 
 public class SHA1HashProvider implements PasswordHashProvider {
 
@@ -41,18 +42,14 @@ public class SHA1HashProvider implements PasswordHashProvider {
 	public String encode(String rawPassword, int iterations) {
 		try {
 			MessageDigest md = MessageDigest.getInstance(this.providerId);
-			md.update(rawPassword.getBytes());
+			md.update(rawPassword.getBytes(StandardCharsets.UTF_16LE));
 
-			// convert the digest byte[] to BigInteger
 			var aux = new BigInteger(1, md.digest());
 
-			// convert BigInteger to 40-char lowercase string using leading 0s
 			return String.format("%040x", aux);
 		} catch (Exception e) {
-			// fail silently
+			throw new RuntimeException(e);
 		}
-
-		return null;
 	}
 
 }
