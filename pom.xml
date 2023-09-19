@@ -13,7 +13,7 @@
 
 	<properties>
 		<java.release>11</java.release>
-		<keycloak.version>10.0.0</keycloak.version>
+		<keycloak.version>22.0.0</keycloak.version>
 		<junit.version>5.7.0</junit.version>
 	</properties>
 
